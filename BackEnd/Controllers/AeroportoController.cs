@@ -11,15 +11,15 @@ public class AeroportoController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Aeroporto>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Aeroporto>>> Listar()
     {
         if (_context is null) return NotFound();
         return await _context.Aeroportos.ToListAsync();
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Aeroporto>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Aeroporto>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var aeroportoTemp = await _context.Aeroportos.FindAsync(id);
@@ -27,8 +27,8 @@ public class AeroportoController : ControllerBase
         return aeroportoTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Aeroporto>> Post(Aeroporto Aeroporto)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Aeroporto>> Cadastrar(Aeroporto Aeroporto)
     {
         _context.Add(Aeroporto);
         await _context.SaveChangesAsync();

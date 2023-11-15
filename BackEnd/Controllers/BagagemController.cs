@@ -11,8 +11,8 @@ public class BagagemController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Bagagem>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Bagagem>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -23,8 +23,8 @@ public class BagagemController : ControllerBase
         return bagagens;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Bagagem>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Bagagem>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var bagagemTemp = await _context.Bagagens.FindAsync(id);
@@ -35,8 +35,8 @@ public class BagagemController : ControllerBase
         return bagagemTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Bagagem>> Post(Bagagem bagagem)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Bagagem>> Cadastrar(Bagagem bagagem)
     {
         var existingPassageiro = await _context.Passageiros.FindAsync(bagagem.PassageiroId);
 

@@ -11,8 +11,8 @@ public class AviaoController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Aviao>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Aviao>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -23,8 +23,8 @@ public class AviaoController : ControllerBase
         return avioes;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Aviao>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Aviao>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var aviaoTemp = await _context.Avioes.FindAsync(id);
@@ -35,8 +35,8 @@ public class AviaoController : ControllerBase
         return aviaoTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Aviao>> Post(Aviao aviao)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Aviao>> Cadastrar(Aviao aviao)
     {
         var existingCompanhia = await _context.CompanhiasAereas.FindAsync(aviao.CompanhiaAereaId);
 

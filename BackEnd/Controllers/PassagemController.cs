@@ -11,8 +11,8 @@ public class PassagemController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Passagem>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Passagem>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -31,8 +31,8 @@ public class PassagemController : ControllerBase
         return passagens;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Passagem>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Passagem>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var passagemTemp = await _context.Passagens.FindAsync(id);
@@ -66,8 +66,8 @@ public class PassagemController : ControllerBase
         return passagemTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Passagem>> Post(Passagem passagem)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Passagem>> Cadastrar(Passagem passagem)
     {
         if (_context is null) return NotFound();
         // Verificar se o Voo existe pelo ID
