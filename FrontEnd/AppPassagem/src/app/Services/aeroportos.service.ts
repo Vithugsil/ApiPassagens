@@ -1,19 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Aeroporto } from '../Classes/Aeroporto'; 
+import { Aeroporto } from '../models/Aeroporto';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type' : 'application/json'
-  })
-}
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AeroportosService {
   apiUrl = 'http://localhost:5000/Aeroporto';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   listar(): Observable<Aeroporto[]> {
     const url = `${this.apiUrl}/listar`;
     return this.http.get<Aeroporto[]>(url);
