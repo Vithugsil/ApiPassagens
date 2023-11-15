@@ -1,0 +1,48 @@
+<div class="container p-5">
+    <div class="row">
+      <div
+        class="col-6 border border-light rounded p-5 shadow"
+        *ngIf="formulario"
+      >
+        <h6>{{ tituloFormulario }}</h6>
+        <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+          <div class="form-group">
+            <label>id</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="Id"
+            />
+          </div>
+          <div class="form-group">
+            <label>nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="Nome"
+            />
+          </div>
+          <div class="form-group">
+            <label>cidade</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="Cidade"
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>  
