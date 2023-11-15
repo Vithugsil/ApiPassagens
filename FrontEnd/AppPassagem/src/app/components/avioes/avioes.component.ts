@@ -37,6 +37,7 @@ export class AvioesComponent implements OnInit {
       companhiaAerea: new FormControl(null),
     });
   }
+  
   enviarFormulario(): void {
     const aviao: Aviao = this.formulario.value;
     const observer: Observer<Aviao> = {

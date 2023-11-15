@@ -8,6 +8,7 @@ import { PagamentosService } from 'src/app/services/pagamentos.service';
   templateUrl: './pagamentos.component.html',
   styleUrls: ['./pagamentos.component.css'],
 })
+
 export class PagamentosComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';

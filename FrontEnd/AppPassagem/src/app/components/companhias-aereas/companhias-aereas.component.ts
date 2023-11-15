@@ -8,6 +8,7 @@ import { CompanhiaAerea } from 'src/app/models/CompanhiaAerea';
   templateUrl: './companhias-aereas.component.html',
   styleUrls: ['./companhias-aereas.component.css'],
 })
+
 export class CompanhiasAereasComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
