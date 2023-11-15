@@ -11,8 +11,8 @@ public class FuncionarioController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Funcionario>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Funcionario>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -23,8 +23,8 @@ public class FuncionarioController : ControllerBase
         return funcionarios;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Funcionario>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Funcionario>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var funcionarioTemp = await _context.Funcionarios.FindAsync(id);
@@ -35,8 +35,8 @@ public class FuncionarioController : ControllerBase
         return funcionarioTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Funcionario>> Post(Funcionario funcionario)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Funcionario>> Cadastrar(Funcionario funcionario)
     {
         // Verificar se o Aeroporto já existe no banco de dados pelo ID
         var existingAeroporto = await _context.Aeroportos.FindAsync(funcionario.AeroportoId);

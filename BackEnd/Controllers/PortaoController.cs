@@ -11,8 +11,8 @@ public class PortaoController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Portao>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Portao>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -23,8 +23,8 @@ public class PortaoController : ControllerBase
         return portoes;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Portao>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Portao>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var portao = await _context.Portoes.FindAsync(id);
@@ -35,8 +35,8 @@ public class PortaoController : ControllerBase
         return portao;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Portao>> Post(Portao portao)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Portao>> Cadastrar(Portao portao)
     {
         var existingAeroporto = await _context.Aeroportos.FindAsync(portao.AeroportoId);
 
