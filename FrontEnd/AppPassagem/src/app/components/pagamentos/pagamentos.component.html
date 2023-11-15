@@ -7,19 +7,11 @@
       <h6>{{ tituloFormulario }}</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
         <div class="form-group">
-          <label>Nome</label>
+          <label>Tipo</label>
           <input
             type="text"
             class="form-control form-control-sm"
             formControlName="nome"
-          />
-        </div>
-        <div class="form-group">
-          <label>Pais</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            formControlName="pais"
           />
         </div>
         <div class="container">
