@@ -32,7 +32,7 @@ export class PagamentosService {
     return this.http.put<Pagamento>(url, pagamento, httpOptions);
   }
   excluir(id: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${id}`;
+    const url = `${this.apiUrl}/excluir/${id}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }

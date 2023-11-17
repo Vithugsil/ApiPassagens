@@ -17,6 +17,12 @@ import { CompanhiasAereasService } from './services/companhias-aereas.service';
 import { CompanhiasAereasComponent } from './components/companhias-aereas/companhias-aereas.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 import { AvioesComponent } from './components/avioes/avioes.component';
+import { PassageirosComponent } from './components/passageiros/passageiros.component';
+import { BagagensComponent } from './components/bagagens/bagagens.component';
+import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
+import { VoosComponent } from './components/voos/voos.component';
+import { PortoesComponent } from './components/portoes/portoes.component';
+import { PassagensComponent } from './components/passagens/passagens.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,12 @@ import { AvioesComponent } from './components/avioes/avioes.component';
     CompanhiasAereasComponent,
     PagamentosComponent,
     AvioesComponent,
+    PassageirosComponent,
+    BagagensComponent,
+    FuncionariosComponent,
+    VoosComponent,
+    PortoesComponent,
+    PassagensComponent,
   ],
   imports: [
     BrowserModule,

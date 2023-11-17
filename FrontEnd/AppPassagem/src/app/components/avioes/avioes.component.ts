@@ -34,7 +34,7 @@ export class AvioesComponent implements OnInit {
 
     this.formulario = new FormGroup({
       modelo: new FormControl(null),
-      companhiaAerea: new FormControl(null),
+      companhiaAereaId: new FormControl(null),
     });
   }
   

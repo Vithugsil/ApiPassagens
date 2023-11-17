@@ -4,7 +4,7 @@ import { AeroportosService } from 'src/app/services/aeroportos.service';
 import { Aeroporto } from 'src/app/models/Aeroporto';
 
 @Component({
-  selector: 'app-aeroporto',
+  selector: 'app-aeroportos',
   templateUrl: './aeroportos.component.html',
   styleUrls: ['./aeroportos.component.css'],
 })
@@ -24,7 +24,7 @@ export class AeroportosComponent implements OnInit {
   enviarFormulario(): void {
     const aeroporto: Aeroporto = this.formulario.value;
     this.aeroportosService.cadastrar(aeroporto).subscribe((result) => {
-      alert('Carro inserido com sucesso.');
+      alert('Aeroporto inserido com sucesso.');
     });
   }
 }

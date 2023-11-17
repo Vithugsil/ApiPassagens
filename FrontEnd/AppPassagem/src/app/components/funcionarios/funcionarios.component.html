@@ -7,21 +7,29 @@
       <h6>{{ tituloFormulario }}</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
         <div class="form-group">
-          <label>Modelo</label>
+          <label>Nome</label>
           <input
             type="text"
             class="form-control form-control-sm"
-            formControlName="modelo"
+            formControlName="nome"
           />
         </div>
         <div class="form-group">
-          <label>Companhia Aérea</label>
+          <label>Cargo</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="cargo"
+          />
+        </div>
+        <div class="form-group">
+          <label>Trabalha em:</label>
           <select
             class="form-control form-control-sm"
-            formControlName="companhiaAereaId"
+            formControlName="aeroportoId"
           >
-            <option *ngFor="let companhia of companhias" [value]="companhia.id">
-              {{ companhia.nome }}
+            <option *ngFor="let aeroporto of aeroportos" [value]="aeroporto.id">
+              {{ aeroporto.nome }} - {{ aeroporto.cidade }} 
             </option>
           </select>
         </div>

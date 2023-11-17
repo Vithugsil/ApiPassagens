@@ -7,21 +7,21 @@
       <h6>{{ tituloFormulario }}</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
         <div class="form-group">
-          <label>Modelo</label>
+          <label>Peso</label>
           <input
             type="text"
             class="form-control form-control-sm"
-            formControlName="modelo"
+            formControlName="peso"
           />
         </div>
         <div class="form-group">
-          <label>Companhia Aérea</label>
+          <label>Passageiro</label>
           <select
             class="form-control form-control-sm"
-            formControlName="companhiaAereaId"
+            formControlName="passageiroId"
           >
-            <option *ngFor="let companhia of companhias" [value]="companhia.id">
-              {{ companhia.nome }}
+            <option *ngFor="let passageiro of passageiros" [value]="passageiro.id">
+              {{ passageiro.sobrenome }}, {{ passageiro.nome }} 
             </option>
           </select>
         </div>

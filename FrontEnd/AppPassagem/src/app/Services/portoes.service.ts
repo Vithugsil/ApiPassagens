@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanhiaAerea } from '../models/CompanhiaAerea';
+import { Portao } from '../models/Portao';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -11,28 +12,28 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class CompanhiasAereasService {
-  apiUrl = 'http://localhost:5000/CompanhiaAerea';
+
+export class PortoesService {
+  apiUrl = 'http://localhost:5000/Portao';
   constructor(private http: HttpClient) {}
-  listar(): Observable<CompanhiaAerea[]> {
+  listar(): Observable<Portao[]> {
     const url = `${this.apiUrl}/listar`;
-    return this.http.get<CompanhiaAerea[]>(url);
+    return this.http.get<Portao[]>(url);
   }
-  buscar(id: number): Observable<CompanhiaAerea> {
+  buscar(id: number): Observable<Portao> {
     const url = `${this.apiUrl}/buscar/${id}`;
-    return this.http.get<CompanhiaAerea>(url);
+    return this.http.get<Portao>(url);
   }
-  cadastrar(companhiaAerea: CompanhiaAerea): Observable<any> {
+  cadastrar(portao: Portao): Observable<any> {
     const url = `${this.apiUrl}/cadastrar`;
-    return this.http.post<CompanhiaAerea>(url, companhiaAerea, httpOptions);
+    return this.http.post<Portao>(url, portao, httpOptions);
   }
-  atualizar(companhiaAerea: CompanhiaAerea): Observable<any> {
+  atualizar(portao: Portao): Observable<any> {
     const url = `${this.apiUrl}/atualizar`;
-    return this.http.put<CompanhiaAerea>(url, companhiaAerea, httpOptions);
+    return this.http.put<Portao>(url, portao, httpOptions);
   }
   excluir(id: number): Observable<any> {
     const url = `${this.apiUrl}/excluir/${id}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }
-

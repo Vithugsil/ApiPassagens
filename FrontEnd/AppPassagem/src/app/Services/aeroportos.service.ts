@@ -31,7 +31,7 @@ export class AeroportosService {
     return this.http.put<Aeroporto>(url, aeroporto, httpOptions);
   }
   excluir(id: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${id}`;
+    const url = `${this.apiUrl}/excluir/${id}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }
