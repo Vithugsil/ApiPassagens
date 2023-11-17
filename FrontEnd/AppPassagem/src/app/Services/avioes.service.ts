@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AvioesService {
-  apiUrl = 'http://localhost:5000/Aeroporto';
+  apiUrl = 'http://localhost:5000/Aviao';
   constructor(private http: HttpClient) {}
   listar(): Observable<Aviao[]> {
     const url = `${this.apiUrl}/listar`;
@@ -32,7 +32,7 @@ export class AvioesService {
     return this.http.put<Aviao>(url, aviao, httpOptions);
   }
   excluir(id: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${id}`;
+    const url = `${this.apiUrl}/excluir/${id}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }
