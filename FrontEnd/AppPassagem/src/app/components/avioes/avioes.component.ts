@@ -13,61 +13,62 @@ import { Observable } from 'rxjs';
   styleUrls: ['./avioes.component.css'],
 })
 export class AvioesComponent implements OnInit {
+  // Formularios
   formularioCadastro: any;
   formularioExclusao: any;
   formularioAtualizar: any;
   formularioBusca: any;
-  // formularioBuscarId: any;
+
+  // Titulos
   tituloFormularioCadastro: string = '';
   tituloFormularioExclusao: string = '';
   tituloFormularioAtualizar: string = '';
-  // tituloFormularioBuscarId  : string = 'Buscar Funcionário'
-  aeroportos: Array<Aeroporto> | undefined;
-  funcionariosBuscados!: Funcionario[];
-  funcionariosBuscadosSubject = new BehaviorSubject<Funcionario[]>([]);
-  resultBuscados = this.funcionariosBuscadosSubject.asObservable();
+
+  // Busca
+  companhiasAereas: Array<CompanhiaAerea> | undefined;
+  avioesBuscados!: Aviao[];
+  avioesBuscadosSubject = new BehaviorSubject<Aviao[]>([]);
+  resultBuscados = this.avioesBuscadosSubject.asObservable();
 
   //Componentes para listagem
-  funcionarios!: Funcionario[];
-  funcionarioSubject = new BehaviorSubject<Funcionario[]>([]);
-  result = this.funcionarioSubject.asObservable();
+  avioes!: Aviao[];
+  aviaoSubject = new BehaviorSubject<Aviao[]>([]);
+  result = this.aviaoSubject.asObservable();
 
   formularioSelecionado: string = 'cadastro';
 
   constructor(
-    private funcionariosService: FuncionariosService,
-    private aeroportosService: AeroportosService
+    private avioesService: AvioesService,
+    private companhiasService: CompanhiasAereasService
   ) {}
 
   ngOnInit(): void {
     //Formulario de cadastro
-    this.tituloFormularioCadastro = 'Novo Funcionário';
-    this.aeroportosService.listar().subscribe((aeroportos) => {
-      this.aeroportos = aeroportos;
-      if (this.aeroportos && this.aeroportos.length > 0) {
-        this.formulario.get('aeroportoId')?.setValue(this.aeroportos[0].id);
+    this.tituloFormularioCadastro = 'Cadastrar';
+    this.companhiasService.listar().subscribe((companhiasAereas) => {
+      this.companhiasAereas = companhiasAereas;
+      if (this.companhiasAereas && this.companhiasAereas.length > 0) {
+        this.formularioCadastro.get('companhiaAereaId')?.setValue(this.avioes[0].id);
       }
     });
 
-    this.formulario = new FormGroup({
-      nome: new FormControl(null),
-      cargo: new FormControl(null),
-      aeroportoId: new FormControl(null),
+    this.formularioCadastro = new FormGroup({
+      modelo: new FormControl(null),
+      companhiaAereaId: new FormControl(null),
     });
 
     // Formulario Exclusão
-    this.tituloFormularioExclusao = 'Exlcuir Funcionario';
+    this.tituloFormularioExclusao = 'Excluir';
     this.formularioExclusao = new FormGroup({
-      Id: new FormControl(null),
+      id: new FormControl(null),
     });
 
     //Formulario Atualizar
-    this.tituloFormularioAtualizar = 'Atualizar Funcionário';
+    this.tituloFormularioAtualizar = 'Atualizar';
     this.formularioAtualizar = new FormGroup({
       id: new FormControl(null),
-      nome: new FormControl(null),
-      cargo: new FormControl(null),
-      aeroportoId: new FormControl(null),
+      modelo: new FormControl(null),
+      companhiaAereaId: new FormControl(null),
     });
 
     //Listar
@@ -78,56 +79,56 @@ export class AvioesComponent implements OnInit {
     });
   }
 
-  enviarFormulario(): void {
-    const funcionario: Funcionario = this.formulario.value;
-    const observer: Observer<Funcionario> = {
+  cadastrar(): void {
+    const aviao: Aviao = this.formularioCadastro.value;
+    const observer: Observer<Aviao> = {
       next(_result): void {
-        alert('Funcionário salvo com sucesso.');
+        console.log(_result);
+        alert('Cadastro feito com sucesso.');
       },
       error(_error): void {
-        alert('Erro ao salvar!');
+        alert('Erro ao cadastrar!');
       },
       complete(): void {},
     };
-    /*
-    if (????) {
-      this.carrosService.alterar(carro).subscribe(observer);
-    } else {
-    */
-    this.funcionariosService.cadastrar(funcionario).subscribe(observer);
+
+    this.avioesService.cadastrar(aviao).subscribe(observer);
   }
 
-  excluirFuncionario(): void {
-    const idExclusao: number = this.formularioExclusao.get('Id')?.value;
-
+  excluir(): void {
+    const idExclusao: number = this.formularioExclusao.get('id')?.value;
+    console.log(idExclusao);
+    
     if (idExclusao) {
-      this.funcionariosService.excluir(idExclusao).subscribe((result) => {
-        alert('Funcionario excluído com sucesso!');
+      this.avioesService.excluir(idExclusao).subscribe((result) => {
+        alert('Excluído com sucesso!');
       });
     } else {
       alert('Insira um ID válido.');
     }
   }
 
-  atualizarFormulario(): void {
-    const aeroporto: Funcionario = this.formularioAtualizar.value;
-    this.funcionariosService.atualizar(aeroporto).subscribe((result) => {
-      alert('Aeroporto atualizado com sucesso!');
+  atualizar(): void {
+    const aviao: Aviao = this.formularioAtualizar.value;
+    console.log(aviao);
+    
+    this.avioesService.atualizar(aviao).subscribe((result) => {
+      alert('Atualizado com sucesso!');
     });
   }
 
   exibirLista(): void {
-    this.funcionariosService.listar().subscribe((_funcionarios) => {
-      this.funcionarioSubject.next(_funcionarios);
+    this.avioesService.listar().subscribe((_result) => {
+      this.aviaoSubject.next(_result);
     });
   }
 
-  buscarFuncionarioPorId(): void {
+  buscarPorId(): void {
     const id: number = this.formularioBusca.get('id')?.value;
 
     if (id) {
-      this.funcionariosService.buscar(id).subscribe((funcionario) => {
-        this.funcionariosBuscadosSubject.next([funcionario]); // Atualiza o BehaviorSubject com o resultado da busca
+      this.avioesService.buscar(id).subscribe((result) => {
+        this.avioesBuscadosSubject.next([result]);
       });
     } else {
       alert('Insira um ID válido.');

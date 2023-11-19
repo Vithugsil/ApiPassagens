@@ -1,10 +1,7 @@
 <div class="container p-5">
   <div class="row">
-    <div
-      class="col-6 border border-light rounded p-5 mx-auto shadow"
-      *ngIf="formularioCadastro"
-    >
-      <h2>Aviões cadastrados</h2>
+    <div class="col-6 border border-light rounded p-5 mx-auto shadow">
+      <h2>Cadastros realizados</h2>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -22,167 +19,104 @@
         </tbody>
       </table>
       <hr />
-      <div class="btn btn-group m-2">
-        <button
-          type="button"
-          class="btn btn-light"
-          (click)="selecionarFormulario('cadastro')"
-        >
-          Cadastro
-        </button>
-        <button
-          type="button"
-          class="btn btn-light"
-          (click)="selecionarFormulario('buscar')"
-        >
-          Buscar
-        </button>
-        <button
-          type="button"
-          class="btn btn-light"
-          (click)="selecionarFormulario('atualizar')"
-        >
-          Atualizar
-        </button>
-        <button
-          type="button"
-          class="btn btn-light"
-          (click)="selecionarFormulario('exclusao')"
-        >
-          Exclusão
-        </button>
+      <div class="btn-group mb-5">
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('cadastro')">Cadastro</button>
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('exclusao')">Exclusão</button>
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('atualizar')">Atualizar</button>
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('buscar')">Buscar</button>
       </div>
+
+      <!-- formulario de cadastro -->
       <div *ngIf="formularioSelecionado === 'cadastro'">
-        <h2>{{ tituloFormularioCadastrar }}</h2>
-        <form
-          [formGroup]="formularioCadastro"
-          (ngSubmit)="cadastrar()"
-        >
+        <h2>{{ tituloFormularioCadastro }}</h2>
+        <form [formGroup]="formularioCadastro" (ngSubmit)="cadastrar()">
           <div class="form-group">
-            <label for="companhiaAerea">Modelo</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="modelo"
-            />
+            <label>Modelo:</label>
+            <input type="text" class="form-control form-control-sm" formControlName="modelo" />
           </div>
           <div class="form-group">
-            <label for="companhiaAerea">Companhia Aerea</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="companhiaAerea"
-            />
+            <label>Pertence a:</label>
+            <select class="form-control form-control-sm" formControlName="companhiaAereaId">
+              <option *ngFor="let companhia of companhiasAereas" [value]="companhia.id">
+                {{ companhia.nome }}
+              </option>
+            </select>
           </div>
           <div class="container">
             <div class="row">
               <div>
-                <button type="submit" class="btn btn-sm btn-primary">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
                   Salvar
                 </button>
               </div>
               <div class="pl-1">
-                <button type="button" class="btn btn-sm btn-light">
-                  Voltar
-                </button>
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
               </div>
             </div>
           </div>
         </form>
       </div>
+
+      <div *ngIf="formularioSelecionado === 'exclusao'">
+        <h2>{{ tituloFormularioExclusao }}</h2>
+        <form [formGroup]="formularioExclusao">
+          <div class="form-group">
+            <label for="IdExclusao">ID:</label>
+            <input type="number" id="IdExclusao" formControlName="id" class="form-control form-control-sm"/>
+          </div>
+          <button (click)="excluir()">Excluir</button>
+        </form>
+      </div>
+
+
       <div *ngIf="formularioSelecionado === 'atualizar'">
         <h2>{{ tituloFormularioAtualizar }}</h2>
-        <form
-          [formGroup]="formularioAtualizar"
-          (ngSubmit)="atualizar()"  
-        >
+        <form [formGroup]="formularioAtualizar" (ngSubmit)="atualizar()">
           <div class="form-group">
             <label>ID:</label>
-            <input
-              type="number"
-              class="form-control form-control-sm"
-              formControlName="id"
-            />
+            <input type="text" class="form-control form-control-sm" formControlName="id" />
           </div>
           <div class="form-group">
             <label>Modelo:</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="modelo"
-            />
+            <input type="text" class="form-control form-control-sm" formControlName="modelo" />
           </div>
           <div class="form-group">
-            <label>Companhia Aerea:</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="companhiaAerea"
-            />
+            <label>Pertence a:</label>
+            <select class="form-control form-control-sm" formControlName="companhiaAereaId">
+              <option *ngFor="let companhia of companhiasAereas" [value]="companhia.id">
+                {{ companhia.nome }}
+              </option>
+            </select>
           </div>
           <div class="container">
             <div class="row">
               <div>
-                <button type="submit" class="btn btn-sm btn-primary">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
                   Salvar
                 </button>
               </div>
               <div class="pl-1">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-light"
-                  (click)="selecionarFormulario('cadastro')"
-                >
-                  Voltar
-                </button>
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
               </div>
             </div>
           </div>
         </form>
       </div>
-      <div *ngIf="formularioSelecionado === 'exclusao'">
-        <h2>{{ tituloFormularioExclusao }}</h2>
-        <form [formGroup]="formularioExclusao" (ngSubmit)="excluir()">
-          <div class="form-group">
-            <label>ID do Avião</label>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              formControlName="id"
-            />
-          </div>
-          <div class="container">
-            <div class="row">
-              <div>
-                <button
-                  type="submit"
-                  class="btn btn-sm"
-                  style="background-color: tomato; color: white"
-                >
-                  Excluir
-                </button>
-              </div>
-              <div class="pl-1">
-                <button type="button" class="btn btn-sm btn-light">
-                  Voltar
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+      <!-- Adicione o formulário de busca no bloco HTML existente -->
       <div *ngIf="formularioSelecionado === 'buscar'">
-        <h2>Buscar por Avião</h2>
-        <form [formGroup]="formularioBuscar" (ngSubmit)="buscarPorId()">
+        <h2>Buscar por ID</h2>
+        <form [formGroup]="formularioBusca" (ngSubmit)="buscarPorId()">
           <div class="form-group">
-            <label for="idBusca">ID do Avião:</label>
+            <label for="idBusca">ID:</label>
             <input type="number" id="idBusca" formControlName="id" class="form-control form-control-sm" />
           </div>
           <button type="submit" class="btn btn-sm btn-outline-secondary">Buscar</button>
         </form>
       </div>
-      <div *ngIf="formularioSelecionado === 'buscar'">
-        <h2>Lista de Aviões</h2>
+      <hr>
+      <!-- Adicione a tabela de resultados -->
+      <div *ngIf=" formularioSelecionado === 'buscar'">
+        <h2>Resultado</h2>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -192,7 +126,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let aviao of resultBusca | async">
+            <tr *ngFor="let aviao of resultBuscados | async">
               <td>{{ aviao.id }}</td>
               <td>{{ aviao.modelo }}</td>
               <td>{{ aviao.companhiaAerea.nome }}</td>
@@ -201,5 +135,7 @@
         </table>
         <button type="button" class="btn btn-sm btn-light" (click)="selecionarFormulario('cadastro')">Voltar</button>
       </div>
+      
+    </div>
   </div>
 </div>
