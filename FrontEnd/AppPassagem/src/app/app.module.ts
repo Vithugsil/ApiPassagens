@@ -23,6 +23,13 @@ import { FuncionariosComponent } from './components/funcionarios/funcionarios.co
 import { VoosComponent } from './components/voos/voos.component';
 import { PortoesComponent } from './components/portoes/portoes.component';
 import { PassagensComponent } from './components/passagens/passagens.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { HeaderComponent } from './components/header/header.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -37,6 +44,7 @@ import { PassagensComponent } from './components/passagens/passagens.component';
     VoosComponent,
     PortoesComponent,
     PassagensComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +53,12 @@ import { PassagensComponent } from './components/passagens/passagens.component';
     HttpClientModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatTableModule,
   ],
   providers: [HttpClientModule, AeroportosService, CompanhiasAereasService],
   bootstrap: [AppComponent],
