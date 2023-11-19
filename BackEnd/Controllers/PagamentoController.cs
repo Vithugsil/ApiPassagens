@@ -52,8 +52,8 @@ public class PagamentoController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Pagamento pagamento)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Pagamento pagamento)
     {
         if (_context is null) return NotFound();
         _context.Pagamentos.Update(pagamento);

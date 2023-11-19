@@ -51,8 +51,8 @@ public class CompanhiaAereaController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(CompanhiaAerea companhia)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(CompanhiaAerea companhia)
     {
         if (_context is null) return NotFound();
         _context.CompanhiasAereas.Update(companhia);

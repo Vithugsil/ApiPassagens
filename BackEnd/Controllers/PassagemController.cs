@@ -188,8 +188,8 @@ public class PassagemController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Passagem passagem)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Passagem passagem)
     {
         if (_context is null) return NotFound();
         var pagamento = await _context.Pagamentos.FindAsync(passagem.PagamentoId);

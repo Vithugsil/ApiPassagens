@@ -51,8 +51,8 @@ public class AeroportoController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Aeroporto aeroporto)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Aeroporto aeroporto)
     {
         if (_context is null) return NotFound();
         _context.Aeroportos.Update(aeroporto);

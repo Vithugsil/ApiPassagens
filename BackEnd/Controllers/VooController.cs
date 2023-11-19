@@ -146,8 +146,8 @@ public class VooController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Voo voo)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Voo voo)
     {
         if (_context is null) return NotFound();
         var aviao = await _context.Avioes.FindAsync(voo.AviaoId);

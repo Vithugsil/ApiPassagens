@@ -52,8 +52,8 @@ public class PassageiroController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Passageiro passageiro)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Passageiro passageiro)
     {
         if (_context is null) return NotFound();
         _context.Passageiros.Update(passageiro);
