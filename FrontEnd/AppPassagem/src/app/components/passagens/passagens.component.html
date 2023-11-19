@@ -1,4 +1,4 @@
-<div class="container p-6">
+<div class="p-10">
   <div class="row">
     <div class="col-6 border border-light rounded p-5 mx-auto shadow">
       <h2>Cadastros realizados</h2>
@@ -20,9 +20,9 @@
             <td>{{ passagem.classe }}</td>
             <td>{{ passagem.preco }}</td>
             <td>{{ passagem.pagamento.tipo }}</td>
-            <td>{{ passagem.portao.codigo }}</td>
-            <td>{{ passagem.voo.numero }}</td>
-            <td>{{ passagem.passageiro.nome }}</td>
+            <td>{{ passagem.portao.codigo }} - {{ passagem.portao.aeroporto.nome }}</td>
+            <td>{{ passagem.voo.numero }} - {{ passagem.voo.aviao.companhiaAerea.nome }}</td>
+            <td>{{ passagem.passageiro.nome }} {{ passagem.passageiro.sobrenome }}</td>
           </tr>
         </tbody>
       </table>
