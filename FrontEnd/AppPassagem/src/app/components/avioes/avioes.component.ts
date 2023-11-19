@@ -48,7 +48,9 @@ export class AvioesComponent implements OnInit {
     this.companhiasService.listar().subscribe((companhiasAereas) => {
       this.companhiasAereas = companhiasAereas;
       if (this.companhiasAereas && this.companhiasAereas.length > 0) {
-        this.formularioCadastro.get('companhiaAereaId')?.setValue(this.avioes[0].id);
+        this.formularioCadastro
+          .get('companhiaAereaId')
+          ?.setValue(this.avioes[0].id);
       }
     });
 
@@ -85,6 +87,7 @@ export class AvioesComponent implements OnInit {
       next(_result): void {
         console.log(_result);
         alert('Cadastro feito com sucesso.');
+        window.location.reload();
       },
       error(_error): void {
         alert('Erro ao cadastrar!');
@@ -98,22 +101,25 @@ export class AvioesComponent implements OnInit {
   excluir(): void {
     const idExclusao: number = this.formularioExclusao.get('id')?.value;
     console.log(idExclusao);
-    
+
     if (idExclusao) {
       this.avioesService.excluir(idExclusao).subscribe((result) => {
         alert('Excluído com sucesso!');
+        window.location.reload();
       });
     } else {
       alert('Insira um ID válido.');
+      window.location.reload();
     }
   }
 
   atualizar(): void {
     const aviao: Aviao = this.formularioAtualizar.value;
     console.log(aviao);
-    
+
     this.avioesService.atualizar(aviao).subscribe((result) => {
       alert('Atualizado com sucesso!');
+      window.location.reload();
     });
   }
 

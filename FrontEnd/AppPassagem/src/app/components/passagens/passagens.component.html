@@ -18,7 +18,7 @@
           <tr *ngFor="let passagem of result | async">
             <td>{{ passagem.id }}</td>
             <td>{{ passagem.classe }}</td>
-            <td>{{ passagem.preco }}</td>
+            <td>R$ {{ passagem.preco }}</td>
             <td>{{ passagem.pagamento.tipo }}</td>
             <td>{{ passagem.portao.codigo }} - {{ passagem.portao.aeroporto.nome }}</td>
             <td>{{ passagem.voo.numero }} - {{ passagem.voo.aviao.companhiaAerea.nome }}</td>
@@ -281,7 +281,7 @@
             <tr>
               <th>ID</th>
               <th>Classe</th>
-              <th>Preço (R$)</th>
+              <th>Preço</th>
               <th>Pagamento</th>
               <th>Portão</th>
               <th>Voo</th>
@@ -292,11 +292,11 @@
             <tr *ngFor="let passagem of resultBuscados | async">
               <td>{{ passagem.id }}</td>
               <td>{{ passagem.classe }}</td>
-              <td>{{ passagem.preco }}</td>
+              <td>R$ {{ passagem.preco }}</td>
               <td>{{ passagem.pagamento.tipo }}</td>
-              <td>{{ passagem.portao.codigo }}</td>
-              <td>{{ passagem.voo.numero }}</td>
-              <td>{{ passagem.passageiro.nome }}</td>
+              <td>{{ passagem.portao.codigo }} - {{ passagem.portao.aeroporto.nome }}</td>
+              <td>{{ passagem.voo.numero }} - {{ passagem.voo.aviao.companhiaAerea.nome }}</td>
+              <td>{{ passagem.passageiro.nome }} {{ passagem.passageiro.sobrenome }}</td>
             </tr>
           </tbody>
         </table>

@@ -130,6 +130,7 @@ export class PassagensComponent implements OnInit {
       next(_result): void {
         console.log(_result);
         alert('Cadastro feito com sucesso.');
+        window.location.reload();
       },
       error(_error): void {
         alert('Erro ao cadastrar!');
@@ -146,6 +147,7 @@ export class PassagensComponent implements OnInit {
     if (idExclusao) {
       this.passagensService.excluir(idExclusao).subscribe((result) => {
         alert('Excluído com sucesso!');
+        window.location.reload();
       });
     } else {
       alert('Insira um ID válido.');
@@ -157,6 +159,7 @@ export class PassagensComponent implements OnInit {
 
     this.passagensService.atualizar(passagem).subscribe((result) => {
       alert('Atualizado com sucesso!');
+      window.location.reload();
     });
   }
 
