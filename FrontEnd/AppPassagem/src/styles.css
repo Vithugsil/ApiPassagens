@@ -7,3 +7,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .example-spacer {
   flex: 1 1 auto;
 }
+
+body {
+  background-image: url(/assets/airport-2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-branco {
+  background-color: white;
+}
