@@ -11,15 +11,15 @@ public class PassageiroController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Passageiro>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Passageiro>>> Listar()
     {
         if (_context is null) return NotFound();
         return await _context.Passageiros.ToListAsync();
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Passageiro>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Passageiro>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var passageiroTemp = await _context.Passageiros.FindAsync(id);
@@ -27,8 +27,8 @@ public class PassageiroController : ControllerBase
         return passageiroTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Passageiro>> Post(Passageiro Passageiro)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Passageiro>> Cadastrar(Passageiro Passageiro)
     {
         _context.Add(Passageiro);
         await _context.SaveChangesAsync();
@@ -52,8 +52,8 @@ public class PassageiroController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Passageiro passageiro)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Passageiro passageiro)
     {
         if (_context is null) return NotFound();
         _context.Passageiros.Update(passageiro);

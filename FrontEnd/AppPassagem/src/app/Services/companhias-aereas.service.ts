@@ -1,19 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanhiaAerea } from '../Classes/CompanhiaAerea'; 
+import { CompanhiaAerea } from '../models/CompanhiaAerea';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type' : 'application/json'
-  })
-}
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CompanhiasAereasService {
   apiUrl = 'http://localhost:5000/CompanhiaAerea';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   listar(): Observable<CompanhiaAerea[]> {
     const url = `${this.apiUrl}/listar`;
     return this.http.get<CompanhiaAerea[]>(url);
@@ -31,7 +31,8 @@ export class CompanhiasAereasService {
     return this.http.put<CompanhiaAerea>(url, companhiaAerea, httpOptions);
   }
   excluir(id: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${id}`;
+    const url = `${this.apiUrl}/excluir/${id}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }
+

@@ -1,0 +1,205 @@
+<div class="container p-5">
+  <div class="row">
+    <div
+      class="col-6 border border-light rounded p-5 mx-auto shadow bg-branco"
+      *ngIf="formularioCadastro"
+    >
+      <h2>Aeroportos cadastrados</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aeroporto of result | async">
+            <td>{{ aeroporto.id }}</td>
+            <td>{{ aeroporto.nome }}</td>
+            <td>{{ aeroporto.cidade }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <div class="btn btn-group m-2">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('cadastro')"
+        >
+          Cadastro
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('buscar')"
+        >
+          Buscar
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('atualizar')"
+        >
+          Atualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('exclusao')"
+        >
+          Exclusão
+        </button>
+      </div>
+      <div *ngIf="formularioSelecionado === 'cadastro'">
+        <h2>{{ tituloFormularioCadastrar }}</h2>
+        <form
+          [formGroup]="formularioCadastro"
+          (ngSubmit)="cadastrarAeroporto()"
+        >
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Cidade">Cidade</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="cidade"
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-primary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="formularioSelecionado === 'atualizar'">
+        <h2>{{ tituloFormularioAtualizar }}</h2>
+        <form
+          [formGroup]="formularioAtualizar"
+          (ngSubmit)="atualizarAeroporto()"
+        >
+          <div class="form-group">
+            <label>ID:</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              formControlName="id"
+            />
+          </div>
+          <div class="form-group">
+            <label>Nome:</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+            />
+          </div>
+          <div class="form-group">
+            <label>Cidade:</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="cidade"
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-primary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-light"
+                  (click)="selecionarFormulario('cadastro')"
+                >
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="formularioSelecionado === 'exclusao'">
+        <h2>{{ tituloFormularioExclusao }}</h2>
+        <form [formGroup]="formularioExclusao" (ngSubmit)="excluirAeroporto()">
+          <div class="form-group">
+            <label>ID do Aeroporto</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="id"
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-sm"
+                  style="background-color: tomato; color: white"
+                >
+                  Excluir
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="formularioSelecionado === 'buscar'">
+        <h2>Buscar por Aeroporto</h2>
+        <form [formGroup]="formularioBuscar" (ngSubmit)="buscarAeroportoPorId()">
+          <div class="form-group">
+            <label for="idBusca">ID do Aeroporto:</label>
+            <input type="number" id="idBusca" formControlName="id" class="form-control form-control-sm" />
+          </div>
+          <button type="submit" class="btn btn-sm btn-outline-secondary">Buscar</button>
+        </form>
+      </div>
+      <div *ngIf="formularioSelecionado === 'buscar'">
+        <h2>Lista de Funcionários</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Cidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let aeroporto of resultBusca | async">
+              <td>{{ aeroporto.id }}</td>
+              <td>{{ aeroporto.nome }}</td>
+              <td>{{ aeroporto.cidade }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-sm btn-light" (click)="selecionarFormulario('cadastro')">Voltar</button>
+      </div>
+  </div>
+</div>

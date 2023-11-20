@@ -11,15 +11,15 @@ public class CompanhiaAereaController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<CompanhiaAerea>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<CompanhiaAerea>>> Listar()
     {
         if (_context is null) return NotFound();
         return await _context.CompanhiasAereas.ToListAsync();
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<CompanhiaAerea>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<CompanhiaAerea>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var companhiaTemp = await _context.CompanhiasAereas.FindAsync(id);
@@ -27,8 +27,8 @@ public class CompanhiaAereaController : ControllerBase
         return companhiaTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<CompanhiaAerea>> Post(CompanhiaAerea CompanhiaAerea)
+    [Route("cadastrar")]
+    public async Task<ActionResult<CompanhiaAerea>> Cadastrar(CompanhiaAerea CompanhiaAerea)
     {
         _context.Add(CompanhiaAerea);
         await _context.SaveChangesAsync();
@@ -51,8 +51,8 @@ public class CompanhiaAereaController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(CompanhiaAerea companhia)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(CompanhiaAerea companhia)
     {
         if (_context is null) return NotFound();
         _context.CompanhiasAereas.Update(companhia);

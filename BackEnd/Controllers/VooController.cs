@@ -11,8 +11,8 @@ public class VooController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Voo>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Voo>>> Listar()
     {
         if (_context is null) return NotFound();
 
@@ -26,8 +26,8 @@ public class VooController : ControllerBase
         return voos;
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Voo>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Voo>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var vooTemp = await _context.Voos.FindAsync(id);
@@ -49,8 +49,8 @@ public class VooController : ControllerBase
         return vooTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Voo>> Post(Voo voo)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Voo>> Cadastrar(Voo voo)
     {
         // Verificar se o Avião existe pelo ID
         var existingAviao = await _context.Avioes.FindAsync(voo.AviaoId);
@@ -146,8 +146,8 @@ public class VooController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Voo voo)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Voo voo)
     {
         if (_context is null) return NotFound();
         var aviao = await _context.Avioes.FindAsync(voo.AviaoId);

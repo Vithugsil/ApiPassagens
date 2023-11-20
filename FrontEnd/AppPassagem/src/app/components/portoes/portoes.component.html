@@ -1,0 +1,217 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-6 border border-light rounded p-5 mx-auto shadow bg-branco">
+      <h2>Cadastros realizados</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Situado em</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let portao of result | async">
+            <td>{{ portao.id }}</td>
+            <td>{{ portao.codigo }}</td>
+            <td>{{ portao.aeroporto.nome }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <div class="btn-group mb-5">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('cadastro')"
+        >
+          Cadastro
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('atualizar')"
+        >
+          Atualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('buscar')"
+        >
+          Buscar
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="selecionarFormulario('exclusao')"
+        >
+          Exclusão
+        </button>
+      </div>
+
+      <!-- formulario de cadastro -->
+      <div *ngIf="formularioSelecionado === 'cadastro'">
+        <h2>{{ tituloFormularioCadastro }}</h2>
+        <form [formGroup]="formularioCadastro" (ngSubmit)="cadastrar()">
+          <div class="form-group">
+            <label>Código:</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="codigo"
+            />
+          </div>
+          <div class="form-group">
+            <label>Situado em:</label>
+            <select
+              class="form-control form-control-sm"
+              formControlName="aeroportoId"
+            >
+              <option
+                *ngFor="let aeroporto of aeroportos"
+                [value]="aeroporto.id"
+              >
+                {{ aeroporto.nome }}
+              </option>
+            </select>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-light"
+                  (click)="selecionarFormulario('cadastro')"
+                >
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="formularioSelecionado === 'exclusao'">
+        <h2>{{ tituloFormularioExclusao }}</h2>
+        <form [formGroup]="formularioExclusao">
+          <div class="form-group">
+            <label for="IdExclusao">ID:</label>
+            <input
+              type="number"
+              id="IdExclusao"
+              formControlName="id"
+              class="form-control form-control-sm"
+            />
+          </div>
+          <button (click)="excluir()">Excluir</button>
+        </form>
+      </div>
+
+      <div *ngIf="formularioSelecionado === 'atualizar'">
+        <h2>{{ tituloFormularioAtualizar }}</h2>
+        <form [formGroup]="formularioAtualizar" (ngSubmit)="atualizar()">
+          <div class="form-group">
+            <label>ID:</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="id"
+            />
+          </div>
+          <div class="form-group">
+            <label>Código:</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="codigo"
+            />
+          </div>
+          <div class="form-group">
+            <label>Situado em:</label>
+            <select
+              class="form-control form-control-sm"
+              formControlName="aeroportoId"
+            >
+              <option
+                *ngFor="let aeroporto of aeroportos"
+                [value]="aeroporto.id"
+              >
+                {{ aeroporto.nome }}
+              </option>
+            </select>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-light"
+                  (click)="selecionarFormulario('cadastro')"
+                >
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Adicione o formulário de busca no bloco HTML existente -->
+      <div *ngIf="formularioSelecionado === 'buscar'">
+        <h2>Buscar por ID</h2>
+        <form [formGroup]="formularioBusca" (ngSubmit)="buscarPorId()">
+          <div class="form-group">
+            <label for="idBusca">ID:</label>
+            <input
+              type="number"
+              id="idBusca"
+              formControlName="id"
+              class="form-control form-control-sm"
+            />
+          </div>
+          <button type="submit" class="btn btn-sm btn-outline-secondary">
+            Buscar
+          </button>
+        </form>
+      </div>
+      <hr />
+      <!-- Adicione a tabela de resultados -->
+      <div *ngIf="formularioSelecionado === 'buscar'">
+        <h2>Resultado</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Código</th>
+              <th>Situado em</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let portao of resultBuscados | async">
+              <td>{{ portao.id }}</td>
+              <td>{{ portao.codigo }}</td>
+              <td>{{ portao.aeroporto.nome }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button
+          type="button"
+          class="btn btn-sm btn-light"
+          (click)="selecionarFormulario('cadastro')"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

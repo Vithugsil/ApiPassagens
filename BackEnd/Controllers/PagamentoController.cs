@@ -11,15 +11,15 @@ public class PagamentoController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    [Route("list")]
-    public async Task<ActionResult<IEnumerable<Pagamento>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<Pagamento>>> Listar()
     {
         if (_context is null) return NotFound();
         return await _context.Pagamentos.ToListAsync();
     }
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<Pagamento>> Find([FromRoute] int id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Pagamento>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
         var pagamentoTemp = await _context.Pagamentos.FindAsync(id);
@@ -27,8 +27,8 @@ public class PagamentoController : ControllerBase
         return pagamentoTemp;
     }
     [HttpPost]
-    [Route("post")]
-    public async Task<ActionResult<Pagamento>> Post(Pagamento pagamento)
+    [Route("cadastrar")]
+    public async Task<ActionResult<Pagamento>> Cadastrar(Pagamento pagamento)
     {
         _context.Add(pagamento);
         await _context.SaveChangesAsync();
@@ -52,8 +52,8 @@ public class PagamentoController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Pagamento pagamento)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Pagamento pagamento)
     {
         if (_context is null) return NotFound();
         _context.Pagamentos.Update(pagamento);
