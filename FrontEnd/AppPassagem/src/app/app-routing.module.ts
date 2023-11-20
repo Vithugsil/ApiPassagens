@@ -11,8 +11,10 @@ import { FuncionariosComponent } from './components/funcionarios/funcionarios.co
 import { VoosComponent } from './components/voos/voos.component';
 import { PortoesComponent } from './components/portoes/portoes.component';
 import { PassagensComponent } from './components/passagens/passagens.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
+  {path: '', component: HomePageComponent},
   {path: 'aeroportos', component:AeroportosComponent},
   {path: 'companhias', component:CompanhiasAereasComponent},
   {path: 'pagamentos', component:PagamentosComponent},

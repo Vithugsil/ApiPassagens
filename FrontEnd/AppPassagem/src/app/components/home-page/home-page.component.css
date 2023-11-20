@@ -1,0 +1,55 @@
+.container {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color: #36363663;
+    border-radius: 10px;
+    height: 300px;
+    width: 1300px;
+}
+
+h1 {
+    margin-top: 80px;
+    margin-left: 30px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 150px;
+}
+
+h2 {
+    margin-top: 10px;
+    margin-left: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 70px;
+    font-weight: lighter;
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+     bottom: 295px;
+  position: absolute;
+  z-index: 10;
+  left: 20px;
+  animation: light 800ms ease-in-out 0s infinite alternate;
+}
+.cloud {
+  position: absolute;
+  top: 300px;
+  right: -500px;
+  opacity: .8;
+   animation: cloud 10s linear 0s infinite reverse;
+  z-index: 99;
+}
+@keyframes light {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes cloud {
+  from {right:-500px;}
+  to {right: 102%;}
+}

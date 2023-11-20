@@ -1,7 +1,7 @@
-<div class="p-10">
+<div class="p-5">
   <div class="row">
     <div class="col-6 border border-light rounded p-5 mx-auto shadow bg-branco">
-      <h2>Cadastros realizados</h2>
+      <h2>Passagens cadastradas</h2>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -21,7 +21,7 @@
             <td>R$ {{ passagem.preco }}</td>
             <td>{{ passagem.pagamento.tipo }}</td>
             <td>{{ passagem.portao.codigo }} - {{ passagem.portao.aeroporto.nome }}</td>
-            <td>{{ passagem.voo.numero }} - {{ passagem.voo.aviao.companhiaAerea.nome }}</td>
+            <td>{{ passagem.voo.origemAeroporto.cidade }} -> {{ passagem.voo.destinoAeroporto.cidade }}</td>
             <td>{{ passagem.passageiro.nome }} {{ passagem.passageiro.sobrenome }}</td>
           </tr>
         </tbody>
@@ -99,7 +99,7 @@
               formControlName="portaoId"
             >
               <option *ngFor="let portao of portoes" [value]="portao.id">
-                {{ portao.codigo }}
+                {{ portao.codigo }} - {{ portao.aeroporto.nome }}
               </option>
             </select>
           </div>
@@ -113,7 +113,7 @@
                 *ngFor="let passageiro of passageiros"
                 [value]="passageiro.id"
               >
-                {{ passageiro.nome }}
+                {{ passageiro.nome }} {{ passageiro.sobrenome }}
               </option>
             </select>
           </div>
@@ -124,7 +124,7 @@
               formControlName="vooId"
             >
               <option *ngFor="let voo of voos" [value]="voo.id">
-                {{ voo.numero }}
+                {{ voo.numero }} - {{ voo.origemAeroporto.cidade }} -> {{ voo.destinoAeroporto.cidade }}
               </option>
             </select>
           </div>
@@ -209,7 +209,7 @@
               formControlName="portaoId"
             >
               <option *ngFor="let portao of portoes" [value]="portao.id">
-                {{ portao.codigo }}
+                {{ portao.codigo }} - {{ portao.aeroporto.cidade }}
               </option>
             </select>
           </div>
@@ -223,7 +223,7 @@
                 *ngFor="let passageiro of passageiros"
                 [value]="passageiro.id"
               >
-                {{ passageiro.nome }}
+                {{ passageiro.nome }} {{ passageiro.sobrenome }}
               </option>
             </select>
           </div>
@@ -234,7 +234,7 @@
               formControlName="vooId"
             >
               <option *ngFor="let voo of voos" [value]="voo.id">
-                {{ voo.numero }}
+                {{ voo.origemAeroporto.cidade }} -> {{ voo.destinoAeroporto.cidade }}
               </option>
             </select>
           </div>
