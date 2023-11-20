@@ -83,8 +83,8 @@ public class PortaoController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Portao portao)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Portao portao)
     {
         if (_context is null) return NotFound();
         var aeroporto = await _context.Aeroportos.FindAsync(portao.AeroportoId);

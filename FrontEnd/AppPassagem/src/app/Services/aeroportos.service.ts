@@ -11,6 +11,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
+
 export class AeroportosService {
   apiUrl = 'http://localhost:5000/Aeroporto';
   constructor(private http: HttpClient) {}

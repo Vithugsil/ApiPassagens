@@ -87,8 +87,8 @@ public class FuncionarioController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Funcionario funcionario)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Funcionario funcionario)
     {
         if (_context is null) return NotFound();
         var aeroporto = await _context.Aeroportos.FindAsync(funcionario.AeroportoId);

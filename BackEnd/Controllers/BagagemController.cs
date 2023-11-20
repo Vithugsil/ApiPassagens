@@ -84,8 +84,8 @@ public class BagagemController : ControllerBase
         }
     }
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Bagagem bagagem)
+    [Route("atualizar")]
+    public async Task<ActionResult> Atualizar(Bagagem bagagem)
     {
         if (_context is null) return NotFound();
         var passageiro = await _context.Passageiros.FindAsync(bagagem.PassageiroId);
