@@ -6,14 +6,26 @@ export class Voo {
   numero: string = '';
   aviao: Aviao;
   aviaoId: number = 0;
-  aeroportoOrigem: Aeroporto;
-  aeroportoOrigemId: number = 0;
-  aeroportoDestino: Aeroporto;
-  aeroportoDestinoId: number = 0;
+  origemAeroporto: Aeroporto;
+  origemAeroportoId: number = 0;
+  destinoAeroporto: Aeroporto;
+  destinoAeroportoId: number = 0;
 
-  constructor(aviao: Aviao, aeroportoOrigem: Aeroporto, aeroportoDestino: Aeroporto) {
+  constructor(
+    numero: string,
+    aviao: Aviao,
+    aviaoId: number,
+    origemAeroportoId: number,
+    origemAeroporto: Aeroporto,
+    destinoAeroportoId: number,
+    destinoAeroporto: Aeroporto
+  ) {
+    this.numero = numero;
     this.aviao = aviao;
-    this.aeroportoOrigem = aeroportoOrigem;
-    this.aeroportoDestino = aeroportoDestino;   
+    this.aviaoId = aviaoId;
+    this.origemAeroporto = origemAeroporto;
+    this.origemAeroportoId = origemAeroportoId;
+    this.destinoAeroporto = destinoAeroporto;
+    this.destinoAeroportoId = destinoAeroportoId;
   }
 }

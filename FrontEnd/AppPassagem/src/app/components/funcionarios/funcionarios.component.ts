@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observer } from 'rxjs';
-import { Aeroporto } from 'src/app/models/Aeroporto';
-import { AeroportosService } from 'src/app/services/aeroportos.service';
 import { Funcionario } from 'src/app/models/Funcionario';
 import { FuncionariosService } from 'src/app/services/funcionarios.service';
+import { Aeroporto } from 'src/app/models/Aeroporto';
+import { AeroportosService } from 'src/app/services/aeroportos.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,14 +13,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./funcionarios.component.css'],
 })
 export class FuncionariosComponent implements OnInit {
-  formulario: any;
+  // Formularios
+  formularioCadastro: any;
   formularioExclusao: any;
   formularioAtualizar: any;
-  // formularioBuscarId: any;
+  formularioBusca: any;
+
+  // Titulos
   tituloFormularioCadastro: string = '';
   tituloFormularioExclusao: string = '';
   tituloFormularioAtualizar: string = '';
-  // tituloFormularioBuscarId  : string = 'Buscar Funcionário'
+
+  // Busca
   aeroportos: Array<Aeroporto> | undefined;
   funcionariosBuscados!: Funcionario[];
   funcionariosBuscadosSubject = new BehaviorSubject<Funcionario[]>([]);
@@ -31,8 +35,6 @@ export class FuncionariosComponent implements OnInit {
   funcionarioSubject = new BehaviorSubject<Funcionario[]>([]);
   result = this.funcionarioSubject.asObservable();
 
-  formularioBusca: any;
-
   formularioSelecionado: string = 'cadastro';
 
   constructor(
@@ -42,28 +44,30 @@ export class FuncionariosComponent implements OnInit {
 
   ngOnInit(): void {
     //Formulario de cadastro
-    this.tituloFormularioCadastro = 'Novo Funcionário';
+    this.tituloFormularioCadastro = 'Cadastrar';
     this.aeroportosService.listar().subscribe((aeroportos) => {
       this.aeroportos = aeroportos;
       if (this.aeroportos && this.aeroportos.length > 0) {
-        this.formulario.get('aeroportoId')?.setValue(this.aeroportos[0].id);
+        this.formularioCadastro
+          .get('aeroportoId')
+          ?.setValue(this.aeroportos[0].id);
       }
     });
 
-    this.formulario = new FormGroup({
+    this.formularioCadastro = new FormGroup({
       nome: new FormControl(null),
       cargo: new FormControl(null),
       aeroportoId: new FormControl(null),
     });
 
     // Formulario Exclusão
-    this.tituloFormularioExclusao = 'Exlcuir Funcionario';
+    this.tituloFormularioExclusao = 'Excluir';
     this.formularioExclusao = new FormGroup({
-      Id: new FormControl(null),
+      id: new FormControl(null),
     });
 
     //Formulario Atualizar
-    this.tituloFormularioAtualizar = 'Atualizar Funcionário';
+    this.tituloFormularioAtualizar = 'Atualizar';
     this.formularioAtualizar = new FormGroup({
       id: new FormControl(null),
       nome: new FormControl(null),
@@ -79,56 +83,57 @@ export class FuncionariosComponent implements OnInit {
     });
   }
 
-  enviarFormulario(): void {
-    const funcionario: Funcionario = this.formulario.value;
+  cadastrar(): void {
+    const funcionario: Funcionario = this.formularioCadastro.value;
     const observer: Observer<Funcionario> = {
       next(_result): void {
-        alert('Funcionário salvo com sucesso.');
+        alert('Cadastro feito com sucesso.');
+        window.location.reload();
       },
       error(_error): void {
-        alert('Erro ao salvar!');
+        alert('Erro ao cadastrar!');
       },
       complete(): void {},
     };
-    /*
-    if (????) {
-      this.carrosService.alterar(carro).subscribe(observer);
-    } else {
-    */
+
     this.funcionariosService.cadastrar(funcionario).subscribe(observer);
   }
 
-  excluirFuncionario(): void {
-    const idExclusao: number = this.formularioExclusao.get('Id')?.value;
+  excluir(): void {
+    const idExclusao: number = this.formularioExclusao.get('id')?.value;
 
     if (idExclusao) {
       this.funcionariosService.excluir(idExclusao).subscribe((result) => {
-        alert('Funcionario excluído com sucesso!');
+        alert('Excluído com sucesso!');
+        window.location.reload();
       });
     } else {
       alert('Insira um ID válido.');
+      window.location.reload();
     }
   }
 
-  atualizarFormulario(): void {
-    const aeroporto: Funcionario = this.formularioAtualizar.value;
-    this.funcionariosService.atualizar(aeroporto).subscribe((result) => {
-      alert('Aeroporto atualizado com sucesso!');
+  atualizar(): void {
+    const funcionario: Funcionario = this.formularioAtualizar.value;
+
+    this.funcionariosService.atualizar(funcionario).subscribe((result) => {
+      alert('Atualizado com sucesso!');
+      window.location.reload();
     });
   }
 
   exibirLista(): void {
-    this.funcionariosService.listar().subscribe((_funcionarios) => {
-      this.funcionarioSubject.next(_funcionarios);
+    this.funcionariosService.listar().subscribe((_result) => {
+      this.funcionarioSubject.next(_result);
     });
   }
 
-  buscarFuncionarioPorId(): void {
+  buscarPorId(): void {
     const id: number = this.formularioBusca.get('id')?.value;
 
     if (id) {
-      this.funcionariosService.buscar(id).subscribe((funcionario) => {
-        this.funcionariosBuscadosSubject.next([funcionario]); // Atualiza o BehaviorSubject com o resultado da busca
+      this.funcionariosService.buscar(id).subscribe((result) => {
+        this.funcionariosBuscadosSubject.next([result]);
       });
     } else {
       alert('Insira um ID válido.');

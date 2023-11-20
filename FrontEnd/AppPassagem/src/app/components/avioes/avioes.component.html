@@ -21,9 +21,9 @@
       <hr />
       <div class="btn-group mb-5">
         <button type="button" class="btn btn-light" (click)="selecionarFormulario('cadastro')">Cadastro</button>
-        <button type="button" class="btn btn-light" (click)="selecionarFormulario('exclusao')">Exclusão</button>
-        <button type="button" class="btn btn-light" (click)="selecionarFormulario('atualizar')">Atualizar</button>
         <button type="button" class="btn btn-light" (click)="selecionarFormulario('buscar')">Buscar</button>
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('atualizar')">Atualizar</button>
+        <button type="button" class="btn btn-light" (click)="selecionarFormulario('exclusao')">Exclusão</button>
       </div>
 
       <!-- formulario de cadastro -->
@@ -50,7 +50,7 @@
                 </button>
               </div>
               <div class="pl-1">
-                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+                <button type="button" class="btn btn-sm btn-light" (click)="selecionarFormulario('cadastro')">Voltar</button>
               </div>
             </div>
           </div>

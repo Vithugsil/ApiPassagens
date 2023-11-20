@@ -159,7 +159,7 @@ export class PassagensComponent implements OnInit {
 
     this.passagensService.atualizar(passagem).subscribe((result) => {
       alert('Atualizado com sucesso!');
-      window.location.reload();
+      
     });
   }
 
