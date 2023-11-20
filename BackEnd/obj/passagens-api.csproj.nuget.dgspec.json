@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProjetosC#\\WebApi\\BackEnd\\passagens-api.csproj": {}
+    "C:\\Users\\luizh\\OneDrive\\Documentos\\Faculdade\\desenvolvimento-de-software-visual\\APIPassagens\\BackEnd\\passagens-api.csproj": {}
   },
   "projects": {
-    "D:\\ProjetosC#\\WebApi\\BackEnd\\passagens-api.csproj": {
+    "C:\\Users\\luizh\\OneDrive\\Documentos\\Faculdade\\desenvolvimento-de-software-visual\\APIPassagens\\BackEnd\\passagens-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProjetosC#\\WebApi\\BackEnd\\passagens-api.csproj",
+        "projectUniqueName": "C:\\Users\\luizh\\OneDrive\\Documentos\\Faculdade\\desenvolvimento-de-software-visual\\APIPassagens\\BackEnd\\passagens-api.csproj",
         "projectName": "passagens-api",
-        "projectPath": "D:\\ProjetosC#\\WebApi\\BackEnd\\passagens-api.csproj",
-        "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
-        "outputPath": "D:\\ProjetosC#\\WebApi\\BackEnd\\obj\\",
+        "projectPath": "C:\\Users\\luizh\\OneDrive\\Documentos\\Faculdade\\desenvolvimento-de-software-visual\\APIPassagens\\BackEnd\\passagens-api.csproj",
+        "packagesPath": "C:\\Users\\luizh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luizh\\OneDrive\\Documentos\\Faculdade\\desenvolvimento-de-software-visual\\APIPassagens\\BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\luizh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
